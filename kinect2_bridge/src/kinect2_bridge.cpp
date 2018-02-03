@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <signal.h>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -917,10 +918,20 @@ private:
         if(isSubscribedDepth)
         {
           OUT_INFO("depth processing: " FG_YELLOW "~" << (tDepth / framesIrDepth) * 1000 << "ms" NO_COLOR " (~" << framesIrDepth / tDepth << "Hz) publishing rate: " FG_YELLOW "~" << framesIrDepth / fpsTime << "Hz" NO_COLOR);
+          if (framesIrDepth == 0)
+          {
+            OUT_FATAL("No depth frames received in a while. Raising SIGINT.");
+            raise(SIGINT);
+          }
         }
         if(isSubscribedColor)
         {
           OUT_INFO("color processing: " FG_YELLOW "~" << (tColor / framesColor) * 1000 << "ms" NO_COLOR " (~" << framesColor / tColor << "Hz) publishing rate: " FG_YELLOW "~" << framesColor / fpsTime << "Hz" NO_COLOR);
+          if (framesColor == 0)
+          {
+            OUT_FATAL("No color frames received in a while. Raising SIGINT.");
+            raise(SIGINT);
+          }
         }
         fpsTime = now;
       }
