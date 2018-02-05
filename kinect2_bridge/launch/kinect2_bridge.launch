@@ -1,5 +1,5 @@
+<?xml version="1.0"?>
 <launch>
-
   <arg name="base_name"         default="kinect2"/>
   <arg name="sensor"            default=""/>
   <arg name="publish_tf"        default="false"/>
@@ -26,6 +26,9 @@
   <arg name="respawn"           default="true"/>
   <arg name="use_nodelet"       default="true"/>
   <arg name="output"            default="screen"/>
+
+  <arg name="quality"           default="qhd"
+       doc="Set to either sd, qhd, or hd to get the desired resolution."/>
 
   <machine name="localhost" address="localhost" if="$(arg use_machine)"/>
 
@@ -58,7 +61,7 @@
   </node>
 
   <!-- Node version of kinect2_bridge -->
-  <node pkg="kinect2_bridge" type="kinect2_bridge" name="$(arg base_name)_bridge" machine="$(arg machine)"
+  <!-- <node pkg="kinect2_bridge" type="kinect2_bridge" name="$(arg base_name)_bridge" machine="$(arg machine)"
         respawn="$(arg respawn)" output="$(arg output)" unless="$(arg use_nodelet)">
     <param name="base_name"         type="str"    value="$(arg base_name)"/>
     <param name="sensor"            type="str"    value="$(arg sensor)"/>
@@ -79,10 +82,11 @@
     <param name="bilateral_filter"  type="bool"   value="$(arg bilateral_filter)"/>
     <param name="edge_aware_filter" type="bool"   value="$(arg edge_aware_filter)"/>
     <param name="worker_threads"    type="int"    value="$(arg worker_threads)"/>
-  </node>
+  </node> -->
 
   <!-- sd point cloud (512 x 424) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_sd" machine="$(arg machine)"
+  <node if="$(eval arg('quality') == 'sd')"
+        pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_sd" machine="$(arg machine)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)"
         output="$(arg output)">
     <remap from="rgb/camera_info"             to="$(arg base_name)/sd/camera_info"/>
@@ -93,7 +97,8 @@
   </node>
 
   <!-- qhd point cloud (960 x 540) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_qhd" machine="$(arg machine)"
+  <node if="$(eval arg('quality') == 'qhd')"
+        pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_qhd" machine="$(arg machine)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)"
         output="$(arg output)">
     <remap from="rgb/camera_info"             to="$(arg base_name)/qhd/camera_info"/>
@@ -104,7 +109,8 @@
   </node>
 
   <!-- hd point cloud (1920 x 1080) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_hd" machine="$(arg machine)"
+  <node if="$(eval arg('quality') == 'hd')"
+        pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_hd" machine="$(arg machine)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)"
         output="$(arg output)">
     <remap from="rgb/camera_info"             to="$(arg base_name)/hd/camera_info"/>
