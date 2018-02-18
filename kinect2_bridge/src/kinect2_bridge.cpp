@@ -268,6 +268,9 @@ private:
     worker_threads = std::max(1, worker_threads);
     threads.resize(worker_threads);
 
+    if (sensor.length() > 0 && sensor.at(0) == '#')
+      sensor = sensor.substr(1);
+
     OUT_INFO("parameter:" << std::endl
              << "        base_name: " FG_CYAN << base_name << NO_COLOR << std::endl
              << "           sensor: " FG_CYAN << (sensor.empty() ? "default" : sensor) << NO_COLOR << std::endl
