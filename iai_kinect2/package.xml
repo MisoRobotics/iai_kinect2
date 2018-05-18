@@ -11,6 +11,11 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <build_depend>kinect2_calibration</build_depend>
+  <build_depend>kinect2_viewer</build_depend>
+  <build_depend>kinect2_bridge</build_depend>
+  <build_depend>kinect2_registration</build_depend>
+
   <run_depend>kinect2_calibration</run_depend>
   <run_depend>kinect2_viewer</run_depend>
   <run_depend>kinect2_bridge</run_depend>
