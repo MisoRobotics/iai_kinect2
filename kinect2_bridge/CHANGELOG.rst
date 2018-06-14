@@ -2,8 +2,8 @@
 Changelog for package kinect2_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2018-06-13)
+------------------
 * Updated depth calibration for 021251365047.
 * Added calibration for 021251365047
 * Updated calibration for 002142565347

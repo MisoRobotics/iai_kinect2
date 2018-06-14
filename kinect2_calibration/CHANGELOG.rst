@@ -2,8 +2,8 @@
 Changelog for package kinect2_calibration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2018-06-13)
+------------------
 * Merge pull request `#315 <https://github.com/MisoRobotics/iai_kinect2/issues/315>`_ from awhampton/typo_fix
   fixed typos
 * fixed typos

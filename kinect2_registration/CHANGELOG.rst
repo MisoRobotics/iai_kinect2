@@ -2,8 +2,8 @@
 Changelog for package kinect2_registration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2018-06-13)
+------------------
 * Adding auto-restart feature to kinect2_bridge node.
 * Merge pull request `#1 <https://github.com/MisoRobotics/iai_kinect2/issues/1>`_ from MisoRobotics/feature/capture-signal
   Feature/capture signal

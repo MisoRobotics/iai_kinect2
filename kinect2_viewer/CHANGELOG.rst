@@ -2,8 +2,8 @@
 Changelog for package kinect2_viewer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2018-06-13)
+------------------
 * removed obsolete isnan and check the integer depth value instead of the float.
 * Merge branch 'ahundt-master' into devel
 * CMake build fixes for OS X for CL.h based on equivalent fixes in libfreenect2
